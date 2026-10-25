@@ -1,0 +1,9 @@
+{
+  "name": "marie-loop-studio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Cute static YouTube A-B loop practice studio",
+  "type": "module",
+  "scripts": {"test": "node --test tests/*.test.mjs"},
+  "engines": {"node": ">=20"}
+}

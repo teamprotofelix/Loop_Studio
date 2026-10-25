@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#fff5f4">
+  <meta name="description" content="귀여운 음악 작업실에서 유튜브 전체·A–B 구간 무한 반복을 즐기세요. 반복 구간 북마크와 메모도 간편하게!">
+  <title>MARIE LOOP STUDIO ♡ 나만의 포근한 반복재생 작업실</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Marie Loop 홈">
+        <span class="brand-icon" aria-hidden="true"><span></span><span></span></span>
+        <span><b>MARIE<span class="brand-accent">♡</span> LOOP</b><small>MY LITTLE LOOP STUDIO</small></span>
+      </a>
+      <div class="header-right"><span class="header-caption">♪ Make every moment yours</span><button class="icon-button theme-button" type="button" id="themeToggle" title="테마 전환" aria-label="테마 전환">☼</button></div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="pageTitle">
+        <img class="hero-art" src="assets/cozy-studio.webp" alt="노을빛 창문과 헤드폰, 고양이 인형이 있는 아늑한 파스텔 음악 작업실" width="1200" height="800" fetchpriority="high">
+        <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-dot"></span> WELCOME TO MY LITTLE STUDIO <span class="eyebrow-line"></span> ♪</div>
+        <h1 id="pageTitle">좋아하는 그 순간,<br><em>한 번 더, 또 한 번 ♡</em></h1>
+        <p>마음에 드는 멜로디도, 놓치고 싶지 않은 장면도.<br>마리의 작은 작업실에서 원하는 만큼 반복해요.</p>
+        <form class="url-form" id="videoForm" autocomplete="off">
+          <label class="sr-only" for="videoUrl">YouTube 동영상 링크 또는 동영상 ID</label>
+          <span class="url-prefix" aria-hidden="true">▶</span>
+          <input type="text" id="videoUrl" name="video" placeholder="여기에 YouTube 링크를 살포시 붙여넣어 주세요" spellcheck="false" required>
+          <button id="pasteBtn" class="paste-button" type="button" title="클립보드에서 붙여넣기">붙여넣기</button>
+          <button class="primary-button load-button" id="loadBtn" type="submit">재생하러 가기 <span aria-hidden="true">♥</span></button>
+        </form>
+        <div class="input-hint"><span>♡ YouTube / Shorts / Music 링크를 넣어주세요</span><button type="button" id="demoBtn" class="inline-action">예시 영상 구경하기 ♫</button></div>
+        </div>
+        <div class="hero-floating hero-floating-top" aria-hidden="true">♡ MARIE’S ROOM</div>
+        <div class="hero-floating hero-floating-bottom" aria-hidden="true">♬  play · repeat · smile</div>
+      </section>
+      <div class="studio-ribbon" aria-hidden="true"><span>✦ make your own little loop ✦</span><img src="assets/music-stickers.webp" width="550" height="170" alt=""></div>
+
+      <div class="studio-grid">
+        <div class="left-stack">
+          <section class="panel player-panel" aria-labelledby="previewLabel">
+            <div class="panel-heading"><div><span class="section-kicker">01 / THE LITTLE THEATER</span><h2 id="previewLabel">나만의 작은 극장 <span class="heading-sparkle">✿</span></h2></div><div class="heading-actions"><span id="playerState" class="state-label"><span class="state-dot"></span>대기 중</span><a id="youtubeOpen" class="external-link hidden" target="_blank" rel="noopener noreferrer">YouTube에서 보기 ↗</a></div></div>
+            <div class="video-frame" id="videoFrame">
+              <div class="player-mount" id="playerMount"></div>
+              <div class="player-placeholder" id="playerPlaceholder"><img class="placeholder-mascot" src="assets/marie-mascot.webp" width="520" height="600" alt=""><b>마리가 기다리고 있어요 ♡</b><span>위에 YouTube 링크를 넣으면 시작할 수 있어요.</span><small>로그인·API 키 없이 바로 사용할 수 있어요.</small></div>
+            </div>
+            <div class="player-controls">
+              <div class="timeline-meta"><span id="timeCurrent">00:00</span><span id="timeDuration">00:00</span></div>
+              <div class="timeline-wrap" id="timelineWrap"><div class="timeline-selection" id="timelineSelection" aria-hidden="true"></div><div class="timeline-marker start-marker" id="startMarker" aria-hidden="true"><span>A</span></div><div class="timeline-marker end-marker" id="endMarker" aria-hidden="true"><span>B</span></div><input id="seekBar" class="seek-bar" type="range" min="0" max="100" step="0.05" value="0" aria-label="영상 재생 위치" disabled></div>
+              <div class="transport-row">
+                <div class="transport-left"><button id="backBtn" class="transport-button secondary-transport" type="button" aria-label="5초 뒤로" title="5초 뒤로 (←)">↶ <small>5</small></button><button id="playBtn" class="transport-button play-transport" type="button" aria-label="재생" title="재생/일시정지 (Space)" disabled>▶</button><button id="forwardBtn" class="transport-button secondary-transport" type="button" aria-label="5초 앞으로" title="5초 앞으로 (→)"><small>5</small> ↷</button></div>
+                <div class="transport-right"><span class="volume-label" aria-hidden="true">◖))</span><input class="volume-slider" type="range" id="volumeSlider" min="0" max="100" value="80" aria-label="볼륨"><div class="control-divider"></div><span class="small-label">SPEED</span><button id="speedDown" class="mini-button" type="button" aria-label="속도 낮추기">−</button><button id="speedValue" class="speed-value" type="button" title="1배속으로 초기화">1.00×</button><button id="speedUp" class="mini-button" type="button" aria-label="속도 높이기">+</button></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel loop-panel" aria-labelledby="loopLabel">
+            <div class="panel-heading"><div><span class="section-kicker">02 / MAGIC LOOP</span><h2 id="loopLabel">마법의 반복 설정 <span class="heading-sparkle">✧</span></h2></div><span class="mini-indicator" id="loopCount">반복 0회</span></div>
+            <div class="mode-row" role="group" aria-label="반복 모드"><button type="button" data-mode="off" class="mode-button" aria-pressed="false"><span class="mode-icon">⏹</span> 반복 끔</button><button type="button" data-mode="full" class="mode-button is-active" aria-pressed="true"><span class="mode-icon">↻</span> 전체 무한 반복</button><button type="button" data-mode="segment" class="mode-button" aria-pressed="false"><span class="mode-icon">⇄</span> A–B 구간 반복</button></div>
+            <div class="ab-editor">
+              <div class="ab-point"><div class="point-label"><span class="point-badge point-a">A</span><span>시작 지점</span><button type="button" class="mark-now" id="markA">현재 시점 지정</button></div><label for="inputA" class="sr-only">A 시작 시간</label><input id="inputA" class="time-field" inputmode="text" placeholder="00:00.000" value="00:00.000" spellcheck="false"><p>클릭하거나 시간을 직접 입력하세요.</p></div>
+              <div class="ab-connector" aria-hidden="true"><span>──────</span><span>⇄</span></div>
+              <div class="ab-point"><div class="point-label"><span class="point-badge point-b">B</span><span>종료 지점</span><button type="button" class="mark-now" id="markB">현재 시점 지정</button></div><label for="inputB" class="sr-only">B 종료 시간</label><input id="inputB" class="time-field" inputmode="text" placeholder="00:00.000" value="" spellcheck="false"><p>종료 시점에 도달하면 A로 돌아갑니다.</p></div>
+            </div>
+            <div class="loop-bottom"><div class="loop-hint" id="loopHint">A와 B를 지정하면 구간 반복을 사용할 수 있습니다.</div><button type="button" id="resetPoints" class="ghost-button">구간 초기화 ↺</button></div>
+            <div class="tools-strip"><button type="button" id="shareBtn" class="outlined-button">↗ 반복 구간 링크 복사</button><button type="button" id="savePresetBtn" class="outlined-button accent-outline">＋ 현재 반복 저장</button></div>
+          </section>
+        </div>
+
+        <aside class="right-stack">
+          <section class="panel presets-panel" aria-labelledby="presetsLabel"><div class="panel-heading"><div><span class="section-kicker">03 / FAVORITE MOMENTS</span><h2 id="presetsLabel">소중한 순간 모아두기 <span class="heading-sparkle">♡</span></h2></div><span id="presetCount" class="counter-badge">0</span></div><p class="panel-explain">마음에 드는 구간들을 나만의 보물함에 모아보세요. ♡<br>목록은 현재 브라우저에만 저장됩니다.</p><div class="preset-list" id="presetList"><div class="empty-content"><span>◇</span>저장한 반복 구간이 없습니다.<small>왼쪽의 ‘현재 반복 저장’을 눌러보세요.</small></div></div></section>
+          <section class="panel notes-panel" aria-labelledby="notesLabel"><div class="panel-heading"><div><span class="section-kicker">04 / DEAR DIARY</span><h2 id="notesLabel">마리의 메모장 <span class="heading-sparkle">✎</span></h2></div><span id="notesStatus" class="note-save-indicator">저장 대기</span></div><p class="panel-explain">반복해서 연습할 포인트나 떠오른 생각을 남겨두세요. ♫</p><label class="sr-only" for="notesArea">메모 작성</label><textarea id="notesArea" placeholder="이 영상에서 기억할 내용, 연습 목표, 반복할 이유를 적어보세요..." rows="8" disabled></textarea><div class="notes-foot"><span>브라우저에 자동 저장</span><span id="notesCount">0자</span></div></section>
+          <section class="keyboard-panel" aria-labelledby="shortcutsLabel"><div class="panel-heading"><div><span class="section-kicker">05 / LITTLE TIPS</span><h2 id="shortcutsLabel">빠른 조작법 <span class="heading-sparkle">✦</span></h2></div></div><div class="shortcut-grid"><span>재생 / 일시정지</span><kbd>Space</kbd><span>A / B 시점 설정</span><div><kbd>A</kbd> <kbd>B</kbd></div><span>반복 켜기 / 끄기</span><kbd>L</kbd><span>전체 / 구간 반복</span><div><kbd>1</kbd> <kbd>2</kbd></div><span>5초 앞 / 뒤로</span><div><kbd>←</kbd> <kbd>→</kbd></div><span>속도 조절</span><div><kbd>−</kbd> <kbd>+</kbd></div></div><p>텍스트를 입력할 때 단축키는 작동하지 않습니다.</p></section>
+        </aside>
+      </div>
+      <section class="info-strip" aria-label="주의 사항"><b>알아두세요.</b> 이 앱은 공식 YouTube 임베드 플레이어를 사용합니다. YouTube에서 외부 재생을 제한한 영상은 재생할 수 없으며, 인터넷 연결이 필요합니다. <span id="runtimeHint"></span></section>
+    </main>
+    <footer>MARIE LOOP STUDIO ♡ <span>© 2026 · 개인용 브라우저 반복 학습 도구 · YouTube 및 LoopTube의 공식 서비스가 아닙니다.</span></footer>
+  </div>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+  <dialog id="saveDialog" class="save-dialog"><form method="dialog" id="saveDialogForm"><div class="dialog-top"><span class="section-kicker">SAVE MOMENT</span><button type="submit" value="cancel" class="icon-button" aria-label="닫기">✕</button></div><h2>반복 구간 저장</h2><p>다음에 바로 찾아올 수 있도록 이름을 붙여주세요.</p><label for="presetName">구간 이름</label><input id="presetName" type="text" maxlength="60" required placeholder="예: 2절 기타 솔로 연습"><div class="dialog-actions"><button type="submit" value="cancel" class="ghost-button">취소</button><button type="submit" value="save" class="primary-button">이 구간 저장</button></div></form></dialog>
+</body>
+</html>
